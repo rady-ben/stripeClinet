@@ -4,9 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <Elements stripe={stripePromise}>
+        <App />
+        </Elements>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
